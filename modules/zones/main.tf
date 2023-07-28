@@ -20,4 +20,11 @@ resource "aws_route53_zone" "this" {
     lookup(each.value, "tags", {}),
     var.tags
   )
+  dynamic "lifecycle" {
+    for_each = try(tolist(lookup(each.value, "lifecycle", [])), [lookup(each.value, "lifecycle", {})])
+
+    content {
+      ignore_changes = lifecycle.value.ignore_changes
+    }
+  }
 }
