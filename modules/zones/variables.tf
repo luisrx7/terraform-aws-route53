@@ -15,3 +15,10 @@ variable "tags" {
   type        = map(any)
   default     = {}
 }
+
+
+variable "ignore_vpc_changes" {
+  description = "Whether to ignore changes to the VPCs associated with the zone"
+  type        = bool
+  default     = false
+}

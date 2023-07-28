@@ -21,6 +21,6 @@ resource "aws_route53_zone" "this" {
     var.tags
   )
   lifecycle {
-    ignore_changes = try(each.value["ignore_vpc_changes"], false) ? [ vpc ] : []
+    ignore_changes = var.ignore_vpc_changes ? [ vpc ] : []
   }
 }
